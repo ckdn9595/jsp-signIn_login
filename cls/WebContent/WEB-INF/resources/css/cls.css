@@ -1,0 +1,43 @@
+.mw800 {
+	max-width: 800px;
+}
+
+.txt14 {
+	font-size: 14pt;
+}
+
+.txt16 {
+	font-size: 16pt;
+}
+
+.clsbold {
+	font-weight: bold;
+}
+
+.inblock {
+	display: inline-block;
+}
+
+.w200 {
+	width: 200px;
+}
+.h50 {
+	height: 50px;
+}
+.h30 {
+	height: 30px;
+}
+
+.mgnh10 {
+	margin: 5px 10px;
+}
+
+.pdr10 {
+	padding-right: 10px;
+}
+
+.clslbl {
+	font-size: 14pt;
+	color: gray;
+	line-height: 200%;
+}
