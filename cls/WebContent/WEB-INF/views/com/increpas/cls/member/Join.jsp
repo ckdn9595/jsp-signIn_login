@@ -13,8 +13,7 @@
 <body>
 	<div class="w3-content w3-center mw650">
 		<h1 class="w3-purple w3-padding w3-card-4 w3-margin-top w3-round-large">Cls Join</h1>
-		<form method="POST" action="/cls/member/joinProc.cls" 
-				class="w3-col w3-padding w3-card-4 w3-margin-top" 
+		<form class="w3-col w3-padding w3-card-4 w3-margin-top" 
 												id="frm" name="frm">
 			<div class="w3-col w3-margin-top">
 				<label for="name" class="w3-col l3 m3 w3-right-align w3-padding clslbl">회 원 이 름 : </label>
@@ -42,6 +41,7 @@
 				<label for="repw" class="w3-col l3 m3 w3-right-align w3-padding clslbl">비밀번호 확인 : </label>
 				<div class="w3-col l9 m12 w3-padding">
 					<input type="password" class="w3-input w3-border" id="repw" name="repw" placeholder="비밀번호를 재입력하세요!">
+					<span class="w3-col w3-center" id="pwmsg" style="display: none;"></span>
 				</div>
 			</div>
 			<div class="w3-col">
@@ -72,7 +72,7 @@
 				<div class="w3-col l9 m12 w3-padding">
 					<div class="w3-col" id="avtfr">
 						<c:forEach var="data" items="${LIST}">
-							<div class="w3-third w3-center w3-hide w3-padding avt${data.gen}fr">
+							<div class="w3-third w3-center  w3-padding avt${data.gen}fr" style="display:none;"">
 								<input type="radio" class="w3-col w3-radio-medium avt" name="avt" value="${data.ano}">
 								<div class="w3-col w3-border imgbox">
 									<img src="/cls/img/avatar/${data.savename}" class="imgsrc">
