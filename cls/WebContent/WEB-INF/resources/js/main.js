@@ -12,4 +12,7 @@ $(document).ready(function(){
 	$('#ibtn').click(function(){
 		$('#frm').submit();
 	});
+	$('#gbtn').click(function(){
+		$(location).attr('href','/cls/guestBoard/guestBoard.cls');	
+	});
 });

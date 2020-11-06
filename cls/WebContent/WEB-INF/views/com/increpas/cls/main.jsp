@@ -46,6 +46,8 @@
 					<h5 class="w3-cell m2 w3-button w3-left w3-red w3-hover-light-pink" id="ibtn">회원정보</h5>
 					<h5 class="w3-cell m2 w3-button w3-right w3-red w3-hover-light-pink" id="obtn">LogOut</h5>
 				</div>
+			</div>
+			</c:if>
 				<div class="w3-col mt10">
 					<div class="w3-col m3 pdh10">
 						<h5 class="w3-col w3-button w3-left w3-green w3-hover-light-pink" id="gbtn">방명록</h5>
@@ -60,8 +62,6 @@
 						<h5 class="w3-col w3-button w3-left w3-gray w3-hover-light-pink" id="fbtn">파일게시판</h5>
 					</div>
 				</div>				
-			</div>
-			</c:if>
 		</div>
 	</div>
 </body>

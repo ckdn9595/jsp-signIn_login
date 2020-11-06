@@ -14,10 +14,31 @@ public class GuestBoard implements ClsMain {
 	public String exec(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
 		String view = "guestBoard/GuestBoard";
-		
-		ArrayList<GuestBoardVO> list = new GBoardDao().getGBoardList();
-		
+		GBoardDao gDao = new GBoardDao();
+		ArrayList<GuestBoardVO> list = gDao.getGBoardList();
+		String sid = "";
+		try {
+			sid = (String) req.getSession().getAttribute("SID");
+
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		int cnt = 0;
+//		try {
+//			
+//			for(int i = 0 ; i<list.size(); i++) {
+//				GuestBoardVO gVO = list.get(i);
+//				String tid = gVO.getId();
+//				if(sid.equals(tid)) {
+//					cnt = 1;
+//				}
+//		}
+//		}catch(Exception e) {
+//			
+//		}
+		cnt = gDao.getIdCnt(sid);
 		req.setAttribute("LIST", list);
+		req.setAttribute("CNT", cnt);
 		return view;
 	}
 

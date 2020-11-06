@@ -23,7 +23,7 @@
 					<span class="w3-col w3-button w3-small w3-orange w3-hover-deep-orange mt0 btnBox" id="lbtn">로그인</span>
 				</div>
 				<div class="w3-col m2 w3-right pdh1">
-					<span class="w3-col w3-button w3-small w3-blue w3-hover-aqua w3-right mt0 btnBox" id="ㅓbtn">회원가입</span>
+					<span class="w3-col w3-button w3-small w3-blue w3-hover-aqua w3-right mt0 btnBox" id="jbtn">회원가입</span>
 				</div>
 			</c:if>
 			<c:if test="${not empty SID}">
@@ -34,6 +34,8 @@
 		</div>
 		
 		<!-- 글 입력창 -->
+		
+		<c:if test="${(not empty SID) and (CNT eq 0)}">
 		<div class="w3-col pb10 w3-border-bottom w3-border-lightgrey pb20" >
 			<div class="w3-col w3-card-4 pd10">
 				<div class="w3-col w3-border-bottom w3-left-align w3-text-grey mb10">글 작 성</div>
@@ -41,17 +43,17 @@
 					<div class="w3-col inblock avtbox100 pdr10">
 						<img src="/cls/img/avatar/img_avatar1.png" class="avtimg100 w3-border">
 					</div>
-					<form class="w3-rest">
-						<textarea class="w3-input w3-border h72" style="resize: none;" placeholder="인삿말을 작성하세요!"></textarea>
+					<form class="w3-rest" method="post" action="/cls/guestBoard/gBoardWrite.cls" id='frm3' name='frm3'>
+						<textarea class="w3-input w3-border h72" style="resize: none;" placeholder="인삿말을 작성하세요!" id="body" name="body"></textarea>
 						<div class="w3-col pdh1 mt5">
-							<span class="w3-col m2 w3-left w3-button w3-small w3-orange w3-hover-deep-orange btnBox" id="lbtn">reset</span>
-							<span class="w3-col m2 w3-right w3-button w3-small w3-orange w3-hover-deep-orange btnBox" id="lbtn">글 등 록</span>
+							<span class="w3-col m2 w3-left w3-button w3-small w3-orange w3-hover-deep-orange btnBox" id="rbtn">reset</span>
+							<span class="w3-col m2 w3-right w3-button w3-small w3-orange w3-hover-deep-orange btnBox" id="wbtn">글 등 록</span>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-		
+		</c:if>
 		<!-- 글 목 록 창 -->
 		<c:forEach var="data" items="${LIST}">
 			<div class="w3-col w3-card-4 pd10 w3-margin-top">
