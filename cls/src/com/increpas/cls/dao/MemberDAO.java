@@ -195,4 +195,7 @@ public class MemberDAO {
 		}
 		return cnt;
 	}
+	//방명록 리스트 꺼내오기 전담 함수
+	
+	
 }
