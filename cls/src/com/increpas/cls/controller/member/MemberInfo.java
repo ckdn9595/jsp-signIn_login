@@ -11,7 +11,7 @@ public class MemberInfo implements ClsMain {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) {
-		ArrayList arr = new ArrayList();
+		ArrayList<avatarVO> arr = new ArrayList<avatarVO>();
 		String view = "member/MemberInfo";
 		MemberVO mVO = new MemberVO();
 		MemberDAO mDAO = new MemberDAO();
@@ -20,12 +20,14 @@ public class MemberInfo implements ClsMain {
 		arr = mDAO.getAvtAll();
 		
 		for(int i = 0 ; i<arr.size(); i++) {
-			aVO = (avatarVO)(arr.get(i));
+			aVO = arr.get(i);
+			System.out.println(aVO.getAno() +"|"+mVO.getAvt());
 			if(aVO.getAno()==mVO.getAvt())break;
 		}
-		
+		req.setAttribute("LIST", arr);
 		req.setAttribute("VO", mVO);
 		req.setAttribute("AVT", aVO);
+		System.out.println("여기까지는 되는건가");
 		return view;
 	}
 

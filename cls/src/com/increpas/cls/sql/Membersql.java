@@ -6,6 +6,7 @@ public class Membersql {
 	public final int SEL_AVT_ALL = 1003;
 	public final int SEL_INFO_ALL = 1004;
 	public final int UPD_INFO = 2001;
+	public final int UPD_OUT = 2002;
 	public final int ADD_MEMB = 3001;
 	
 	public String getSQL(int code) {
@@ -20,6 +21,7 @@ public class Membersql {
 			buff.append("WHERE ");
 			buff.append("	id = ? ");
 			buff.append("	AND pw = ? ");
+			buff.append("	AND isshow = 'Y' ");
 			break;
 		case SEL_ID_CNT:
 			buff.append("SELECT ");
@@ -37,7 +39,7 @@ public class Membersql {
 			break;
 		case SEL_INFO_ALL:
 			buff.append("SELECT ");
-			buff.append("	mno, id, name, mail, gen, joindate ");
+			buff.append("	mno, id, name, mail, gen, joindate, avt ");
 			buff.append("FROM ");
 			buff.append("	member ");
 			buff.append("WHERE ");
@@ -48,6 +50,14 @@ public class Membersql {
 			buff.append("	member ");
 			buff.append("set ");
 			buff.append("	mail = ? ");
+			buff.append("WHERE ");
+			buff.append(" id = ? ");
+			break;
+		case UPD_OUT:
+			buff.append("UPDATE ");
+			buff.append("	member ");
+			buff.append("set ");
+			buff.append("	isshow = 'N' ");
 			buff.append("WHERE ");
 			buff.append(" id = ? ");
 			break;

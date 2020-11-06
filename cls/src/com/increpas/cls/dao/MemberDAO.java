@@ -109,6 +109,7 @@ public class MemberDAO {
 			rs.next();
 			
 			mVO.setMno(rs.getInt("mno"));
+			mVO.setAvt(rs.getInt("avt"));
 			mVO.setId(rs.getString("id"));
 			mVO.setName(rs.getString("name"));
 			mVO.setMail(rs.getString("mail"));
@@ -125,12 +126,34 @@ public class MemberDAO {
 		
 		return mVO;
 	}
-	public int editMemb(String id) {
+	public int editMemb(String id, String mail) {
 		int cnt = 0;
 		//할일
 		//1. 커넥션
 		con = db.getCon();
 		String sql = msql.getSQL(msql.UPD_INFO);
+		
+		pstmt = db.getPSTMT(con, sql);
+		
+		try {
+			pstmt.setNString(1, mail);
+			pstmt.setNString(2, id);
+			
+			cnt = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			db.close(pstmt);
+			db.close(con);
+		}
+		return cnt;
+	}
+	public int joinOut(String id) {
+		int cnt = 0;
+		//할일
+		//1. 커넥션
+		con = db.getCon();
+		String sql = msql.getSQL(msql.UPD_OUT);
 		
 		pstmt = db.getPSTMT(con, sql);
 		

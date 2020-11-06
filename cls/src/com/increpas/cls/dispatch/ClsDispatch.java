@@ -105,6 +105,7 @@ public class ClsDispatch extends HttpServlet {
 		 */
 		req.setAttribute("isRedirect", false);
 		String view = cls.exec(req, resp);
+		System.out.println(view + " ##############");
 		try {
 			bool = (Boolean) req.getAttribute("isRedirect");
 		} catch(Exception e) {}

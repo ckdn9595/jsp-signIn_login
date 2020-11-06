@@ -28,14 +28,22 @@
 				<h5 class="" id="mid">아이디:${VO.id}</h5>
 				<h5 class="" id="mname">이름:${VO.name}</h5>
 				<h5 class="" id="mmail">이메일:${VO.mail}</h5>
-				<form method="post" action="cls/member/editProc.cls" name="editf" id="editf" class="w3-col w3-hide">
-					<input class="w3-col m7 w3-margin w3-left" type="text" id="pmail" name="pmail" placeholder="바꿀 메일 입력">
-					<h5 class="w3-col m3 w3-border w3-small w3-button w3-left w3-green w3-hover-light-pink" id="change">입력</h5>
-				</form>
-					<h5 class="" id="mgen">성별:${VO.gen}</h5>
-					<h5 class="" id="mjoin">가입일:${VO.sdate}</h5>
+				<h5 class="" id="mgen">성별:${VO.gen}</h5>
+				<h5 class="" id="mjoin">가입일:${VO.sdate}</h5>
 			</div>
 		</div>
+			<div class=" box w3-hide w3-col" id="box">
+					<input class="w3-col m7 w3-margin w3-left" type="text" id="pmail" name="pmail" placeholder="바꿀 메일 입력">
+					<h5 class="w3-col m3 w3-border w3-small w3-button w3-left w3-green w3-hover-light-pink" id="change">입력</h5>
+				<c:forEach var="data" items="${LIST}">
+					<c:if test="${data.gen == VO.gen}">
+						<div class=" w3-padding w3-margin imgbox2">
+							<input type="radio" name="radio" id="radio" val="${data.ano}"><span>${data.ano}</span>
+							<img src="/cls/img/avatar/${data.savename}" class="imgsrc2">
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
 	</div>
 </body>
 </html>

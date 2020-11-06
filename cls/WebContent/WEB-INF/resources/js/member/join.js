@@ -44,6 +44,8 @@ $(document).ready(function(){
 		}else{
 			$(this).removeClass('w3-teal');
 			$(this).addClass('w3-pale-red');
+			setTimeout(showPwTag, 500);
+			$('#pwmsg').stop().hide();
 		}
 	});
 	$("#repw").keyup(function(){
@@ -64,6 +66,9 @@ $(document).ready(function(){
 	});
 	function hidePwTag(){
 		$('#repw').parent().parent().stop().slideUp(300);
+	};
+	function showPwTag(){
+		$('#repw').parent().parent().stop().slideDown(300);
 	};
 	
 	//회원이름 정구식 검사
