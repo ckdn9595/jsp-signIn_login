@@ -31,5 +31,33 @@ $(document).ready(function(){
 			break;
 		}
 		$(location).attr('href',target);
-	})
+	});
+	
+	$('.pagebtn').click(function (){
+		var str = $(this).text();
+		
+		var sPage = '';
+		if(str == 'pre'){
+			sPage = $(this).attr('id');
+		}else if(str == 'next'){
+			sPage = $(this).attr('id');
+			
+		}else{
+			sPage = str;
+		}
+		
+//		$(location).attr('href','/cls/guestBoard/gBoardList.cls?nowPage='+ sPage);
+
+		$('#nowPage').val(sPage);
+		
+		$('#gfrm').submit();
+	});
+	
 });
+
+
+
+
+
+
+

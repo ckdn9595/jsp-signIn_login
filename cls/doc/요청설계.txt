@@ -89,3 +89,25 @@
 뷰	  : redirect ] 
 				성공 : /cls/guestBoard/guestBoard.cls
 				실패 : /cls/member/login.cls
+-------------------------------------------------------------
+# 방명록 리스트 보기 요청
+요청내용 : /cls/guestBoard/gBoardList.cls
+파라미터 : nowPage
+컨트롤러 : com.increpas.cls.controller.guestBoard.gBoardList
+뷰	  : /WEB-INF/views/com/increpas/cls/guestBoard/gBoardList.jsp
+=============================================================
+### 댓글게시판 더미 데이터 삽입 요청
+-- ReBoardVO, ReBoardDao, ReBoardSQL
+
+# 방명록 더미데이터 삽입 요청
+요청내용 : /cls/reBoard/initRBD.cls
+파라미터 : 무
+컨트롤러 : com.increpas.cls.controller.reBoard.AddRBD
+뷰	  : redirect ] /cls/guestBoard/reBoard.cls
+--------------------------------------------------------------------
+
+# 댓글 게시글 보기 요청
+요청내용 : /cls/reBoard/reBoardList.cls
+파라미터 : nowPage
+컨트롤러 : com.increpas.cls.controller.reBoard.ReBoardList
+뷰	  : /WEB-INF/views/com/increpas/cls/reBoard/ReBoard.jsp

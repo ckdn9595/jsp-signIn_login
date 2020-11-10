@@ -5,11 +5,17 @@ import java.sql.*;
 import java.text.*;
 
 public class GuestBoardVO {
-	private int gno, mno, ano;
+	private int rno, gno, mno, ano;
 	private String id, name, body, avatar, sdate;
 	private Date wdate;
 	private Time wtime;
 	
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
 	public int getGno() {
 		return gno;
 	}

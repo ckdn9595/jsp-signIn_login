@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="w3-content w3-center mw650">
-		<h1 class="w3-purple w3-padding w3-card-4">Cls 방명록</h1>
+		<h1 class="w3-orange w3-padding w3-card-4">Cls 방명록</h1>
 		<div class="w3-col w3-border-bottom pdb10">
 			<div class="w3-col m2 w3-left pdh1">
 				<span class="w3-col w3-button w3-small w3-green w3-hover-lime w3-left mt0 btnBox" id="hbtn">Home</span>
@@ -72,13 +72,24 @@
 			</div>
 		</c:forEach>
 		<div class="w3-col w3-center w3-margin-top w3-margin-bottom">
-			<div class="w3-bar w3-border w3-round">
-			  <a href="#" class="w3-bar-item w3-button w3-hover-lime">&laquo;</a>
-			  <c:forEach var="page" begin="${PAGE.startPage}" end="${PAGE.endPage}">
-			 	 <span class="w3-bar-item w3-button w3-hover-lime">${page}</span>
-			</c:forEach>
-			  <a href="#" class="w3-bar-item w3-button w3-hover-lime">&raquo;</a>
-			</div>
+			<form class="w3-bar w3-border w3-round" method = "post" action="/cls/guestBoard/gBoardList.cls" name="gfrm" id="gfrm">
+				<input type="hidden" name = "nowPage" id="nowPage">
+				<c:if test="${PAGE.startPage != 1}">
+				  <span class="w3-bar-item w3-button w3-hover-lime pagebtn" id="${PAGE.startPage -1}">pre</span>
+				</c:if>
+				<c:if test="${PAGE.startPage == 1}">
+				  <span class="w3-bar-item w3-grey pagebtn">pre</span>
+				</c:if>
+				<c:forEach var="page" begin="${PAGE.startPage}" end="${PAGE.endPage}">
+				 	 <span class="w3-bar-item w3-button w3-hover-lime pagebtn">${page}</span>
+				</c:forEach>
+				<c:if test="${PAGE.endPage != PAGE.totalPage}">
+				  <span class="w3-bar-item w3-button w3-hover-lime pagebtn" id="${PAGE.endPage +1}">next</span>
+				</c:if>
+				<c:if test="${PAGE.endPage == PAGE.totalPage}">
+				  <span class="w3-bar-item w3-grey pagebtn">next</span>
+				</c:if>
+			</form>
 		</div>
 		
 	</div>

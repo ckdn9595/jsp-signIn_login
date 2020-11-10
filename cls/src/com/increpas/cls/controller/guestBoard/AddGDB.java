@@ -13,9 +13,26 @@ public class AddGDB implements ClsMain {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) {
 		String view = "/cls/guestBoard/guestBoard.cls";
+		
+		ArrayList<String> name = new ArrayList<String>();
+		name.add("jjang");
+		name.add("kys");
+		name.add("wook");
+		name.add("jang");
+		name.add("smkim");
+		name.add("mygusdnd");
+		name.add("euns");
+		name.add("jieun");
+		name.add("jeong");
+		name.add("juhyun");
+		name.add("park");
+		name.add("joseph");
+		name.add("dhgpcks");
+		
 		req.setAttribute("isRedirect", true);
 		ArrayList<HashMap<String,String>> arr = new ArrayList<HashMap<String,String>>();
-		arr = getList();
+//		arr = getList();
+		arr = getList(name);
 		GBoardDao dao = new GBoardDao();
 		
 		int cnt = dao.addGBoard(arr);
@@ -48,6 +65,18 @@ public class AddGDB implements ClsMain {
 		list.add(map5);
 		
 		return list;		
+	}
+	public ArrayList<HashMap<String,String>> getList(ArrayList<String> name){
+		ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+		for (int i = 0 ; i < name.size(); i++) {
+			HashMap<String,String> map = new HashMap<String,String>();
+			map.put("id", name.get(i));
+			map.put("body", "오늘가입함 ㅋ");
+			
+			list.add(map);
+		}
+		
+		return list;
 	}
 
 }
