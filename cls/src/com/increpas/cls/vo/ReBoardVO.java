@@ -1,26 +1,36 @@
 package com.increpas.cls.vo;
 
-import java.util.*;
-import java.sql.Time;
 import java.text.*;
+import java.sql.*;
 
 public class ReBoardVO {
-	
-	private int bno, b_mno, upno;
-	private String body, isshow, date;
+	private int rno, bno, ano, mno, upno, step;
+	private String body, sdate, id, avatar;
 	private Date wdate;
 	private Time wtime;
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
 	public int getBno() {
 		return bno;
 	}
 	public void setBno(int bno) {
 		this.bno = bno;
 	}
-	public int getB_mno() {
-		return b_mno;
+	public int getAno() {
+		return ano;
 	}
-	public void setB_mno(int b_mno) {
-		this.b_mno = b_mno;
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+	public int getMno() {
+		return mno;
+	}
+	public void setMno(int mno) {
+		this.mno = mno;
 	}
 	public int getUpno() {
 		return upno;
@@ -28,28 +38,40 @@ public class ReBoardVO {
 	public void setUpno(int upno) {
 		this.upno = upno;
 	}
+	public int getStep() {
+		return step;
+	}
+	public void setStep(int step) {
+		this.step = step;
+	}
 	public String getBody() {
 		return body;
 	}
 	public void setBody(String body) {
 		this.body = body;
 	}
-	public String getIsshow() {
-		return isshow;
+	public String getSdate() {
+		return sdate;
 	}
-	public void setIsshow(String isshow) {
-		this.isshow = isshow;
+	public void setSdate() {
+		SimpleDateFormat form1 = new SimpleDateFormat("yyyy/MM/dd ");
+		SimpleDateFormat form2 = new SimpleDateFormat("HH:mm");
+		sdate = form1.format(wdate) + form2.format(wtime);
 	}
-	public String getDate() {
-		return date;
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public String getId() {
+		return id;
 	}
-	public void setDate() {
-		SimpleDateFormat form1 = new SimpleDateFormat("YYYY/MM/DD");
-		SimpleDateFormat form2 = new SimpleDateFormat("HH/mm");
-		this.date = form1.format(wdate) + form2.format(wtime);
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 	public Date getWdate() {
 		return wdate;
@@ -62,8 +84,12 @@ public class ReBoardVO {
 	}
 	public void setWtime(Time wtime) {
 		this.wtime = wtime;
-		setDate();
+		setSdate();
 	}
-	
-
+	@Override
+	public String toString() {
+		return "ReBoardVO : rno=" + rno + ", bno=" + bno + ", ano=" + ano + ", mno=" + mno + ", upno=" + upno + ", step="
+				+ step + ", body=" + body + ", sdate=" + sdate + ", id=" + id + ", avatar=" + avatar + ", wdate="
+				+ wdate + ", wtime=" + wtime;
+	}
 }

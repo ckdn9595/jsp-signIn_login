@@ -55,6 +55,11 @@
 					<div class="w3-col m3 pdh10">
 						<h5 class="w3-col w3-button w3-left w3-yellow w3-hover-light-pink" id="sbtn">설문조사사</h5>
 					</div>
+					<c:if test="${RCNT !=0}">
+						<div class="w3-col m3 pdh10">
+							<h5 class="w3-col w3-button w3-left w3-black w3-hover-light-pink" id="irbtn">댓글 쓰기</h5>
+						</div>
+					</c:if>	
 					<div class="w3-col m3 pdh10">
 						<h5 class="w3-col w3-button w3-left w3-black w3-hover-light-pink" id="rbtn">댓글 게시판</h5>
 					</div>

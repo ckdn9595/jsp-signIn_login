@@ -15,4 +15,11 @@ $(document).ready(function(){
 	$('#gbtn').click(function(){
 		$(location).attr('href','/cls/guestBoard/guestBoard.cls');	
 	});
+	$('#irbtn').click(function(){
+		$(location).attr('href','/cls/reBoard/initRBD.cls');	
+	});
+	$('#rbtn').click(function(){
+		$(location).attr('href','/cls/reBoard/reBoardList.cls');	
+	});
+	
 });
