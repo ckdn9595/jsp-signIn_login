@@ -11,9 +11,13 @@ public class MainController implements ClsMain {
 		
 //		System.out.println("view : " + view);
 		int cnt = new ReBoardDao().getCnt();
-		
+//		Cookie ck = new Cookie("firstCk", "icanusethis");
+//		ck.setMaxAge(60*60);
+//		resp.addCookie(ck);
 		req.setAttribute("RCNT", cnt);
 		return view;
 	}
+
+	
 
 }

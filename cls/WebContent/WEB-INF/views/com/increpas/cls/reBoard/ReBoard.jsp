@@ -12,77 +12,116 @@
 	</head>
 
 	<body>
-		<h1 class="w3-amber w3-padding w3-card-4 w3 w3-center">댓글 게시판</h1>
-		<div class="w3-col pdb10">
-			<div class="w3-col m2 w3-left pdh1">
-				<span class="w3-col w3-button w3-small w3-green w3-hover-lime w3-left mt0 btnBox" id="hbtn">Home</span>
-			</div>
-			<c:if test="${empty SID}">
-				<div class="w3-col m2 w3-right pdh1">
-					<span class="w3-col w3-button w3-small w3-orange w3-hover-deep-orange mt0 btnBox" id="lbtn">로그인</span>
-				</div>
-				<div class="w3-col m2 w3-right pdh1">
-					<span class="w3-col w3-button w3-small w3-blue w3-hover-aqua w3-right mt0 btnBox" id="jbtn">회원가입</span>
-				</div>
-			</c:if>
-			<c:if test="${not empty SID}">
-				<div class="w3-col m2 w3-right pdh1">
-					<span class="w3-col w3-button w3-small w3-red w3-hover-orange w3-right mt0 btnBox" id="obtn">로그아웃</span>
-				</div>
-			</c:if>
-		</div>
-		
-		<div class="w3-col w3-border-top w3-border-bottom">
-			<span class="w3-col m2 w3-center w3-border-right w3-light-grey">
-				글번호
-			</span>
-			<span class="w3-col m3 w3-center w3-border-right w3-light-grey">
-				작성자(id)
-			</span>
-			<span class="w3-col m4 w3-center w3-border-right w3-light-grey">
-				글내용
-			</span>
-			<span class="w3-col m3 w3-center w3-light-grey">
-				작성일
-			</span>
-		</div>
-		
-		<!-- 글 목록창 -->
-		<c:forEach var="data" items="${LIST}">
-			<div class="w3-col w3-border-top w3-border-bottom" style = "padding-left:${data.step * 50}px;">
-				<span class="w3-col m2 w3-center w3-border-right ">
-					${data.bno}
-				</span>
-				<span class="w3-col m3 w3-center w3-border-right">
-					${data.id}
-				</span>
-				<span class="w3-col m4 w3-center w3-border-right">
-					${data.body}
-				</span>
-				<span class="w3-col m3 w3-center">
-					${data.wdate}
-				</span>
-			</div>
-		</c:forEach>
-		
-		<!-- 페이징 버튼 처리할껍니다 -->
-		<form class="w3-col w3-center w3-margin-top w3-margin-bottom" id = "pfrm">
-			<!-- 일단 GET방식으로 해보자 -->
-			<c:if test="${PAGE.startPage eq 1}">
-				<span class="w3-bar-item w3-grey">&laquo;</span>
-			</c:if>
-			<c:if test="${PAGE.startPage ne 1}">
-				<span class="w3-bar-item w3-button w3-hover-lime pbtn" id="${PAGE.startPage-1}">&laquo;</span>
-			</c:if>
-			<c:forEach var="page" begin="${PAGE.startPage}" end="${PAGE.endPage}">
-				<span class="w3-bar-item w3-button w3-hover-lime pbtn" id="${page}">${page}</span>
-			</c:forEach>
-			<c:if test="${PAGE.endPage eq PAGE.totalPage}">
-				<span class="w3-bar-item w3-grey">&raquo;</span>
-			</c:if>
-			<c:if test="${PAGE.endPage ne PAGE.totalPage}">
-				<span class="w3-bar-item w3-button w3-hover-lime pbtn" id="${PAGE.endPage+1}">&raquo;</span>
-			</c:if>
+		<form method="POST" action="/cls/reBoard/reBoardDelProc.cls" id = "frm1" name = "frm1">
+			<input type="hidden" name= "bno" id="dbno">
+			<input type="hidden" name= "body" id="body">
+			<input type="hidden" name= "nowpage" value="${PAGE.nowPage}">
 		</form>
+		<c:if test="${not empty SID }">
+		<div id="wmodal" class="w3-modal">
+			<div class="w3-modal-content">
+				<div class="w3-content">
+					<span class="w3-button w3-display-topright" id="mcbtn">x</span>
+					<div class="w3-col w3-border-bottom w3-left-align w3-text-grey mb10">글 작 성</div>
+					<div class="w3-col">
+						<div class="w3-col inblock avtbox100 pdr10">
+							<img src="/cls/img/avatar/${AVTIMG}" class="avtimg100 w3-border">
+						</div>
+						<form class="w3-rest" method="post" action="/cls/guestBoard/gBoardWrite.cls" id='frm3' name='frm3'>
+							<input type="hidden" name = "id" value="${SID}">
+							<input type="hidden" name = "bno" id="tno">
+							<input type="hidden" name = "avatar" id="avt" value="${AVTIMG}">
+							<input type="hidden" name="nowpage" value="${PAGE.nowPage}">
+							<textarea class="w3-input w3-border h72" style="resize: none;" placeholder="인삿말을 작성하세요!" id="body" name="body"></textarea>
+							<div class="w3-col pdh1 mt5">
+								<span class="w3-col m2 w3-left w3-button w3-small w3-orange w3-hover-deep-orange btn" id="rrbtn">reset</span>
+								<span class="w3-col m2 w3-right w3-button w3-small w3-orange w3-hover-deep-orange btn" id="wrbtn">글 등 록</span>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		</c:if>
+		<div class="w3-content w3-center mw650">
+			<h1 class="w3-pink w3-padding">댓글게시판</h1>
+			<div class="w3-row w3-border-bottom pdb10">
+				<div class="w3-col m2 w3-left pdh1">
+						<span class="w3-col w3-button w3-small w3-green w3-hover-lime w3-left mt0 btnBox" id="hbtn">Home</span>
+				</div>
+				<c:if test="${empty SID}">
+					<div class="w3-col m2 w3-right pdh1">
+						<span class="w3-col w3-button w3-small w3-orange w3-hover-deep-orange mt0 btnBox" id="lbtn">로그인</span>
+					</div>
+					<div class="w3-col m2 w3-right pdh1">
+						<span class="w3-col w3-button w3-small w3-blue w3-hover-aqua w3-right mt0 btnBox" id="jbtn">회원가입</span>
+					</div>
+				</c:if>
+				<c:if test="${not empty SID}">
+					<div class="w3-col m2 w3-right pdh1">
+						<span class="w3-col w3-button w3-small w3-red w3-hover-orange w3-right mt0 btnBox" id="obtn">로그아웃</span>
+					</div>
+				</c:if>
+					<div class="w3-col m2 w3-right pdh1">
+					<span class="w3-col w3-button w3-small w3-pink w3-hover-orange w3-right mt0" id="wbtn">글쓰기</span>
+				</div>
+		</div>
+		
+		<!-- 댓글 리스트 -->
+		<div class="w3-row w3-padding w3-card-4" style="padding-bottom: 20px!important;">
+			<c:forEach var="data" items="${LIST}">
+					<div class="w3-col w3-border-bottom pdb10">
+						<div class="w3-col m${12 - data.step * 2} w3-right pd10 w3-margin-top">
+						
+						<!-- 댓글 표시 영역 -->
+							<div class="w3-col">
+								<div class="w3-col inblock avtbox100 pdr10">
+									<img src="/cls/img/avatar/${data.avatar}" class="avtimg100 w3-border">
+								</div>
+								<div class="w3-rest">
+									<div class="w3-col w3-border-bottom w3-border-blue w3-left w3-text-grey mb5 pb3">
+										<div class="w3-cell w3-left">작성자 : ${data.id}</div>
+										<div class="w3-cell w3-right"><small>${data.sdate}</small></div>
+									</div>
+									<div class="w3-col w3-padding h70 w3-left-align w3-display-container">
+										${data.body}
+										<c:if test="${ SID ne data.id}">
+											<div class="w3-card-4 w3-button-small w3-blue w3-hover-aqua w3-right w3-display-bottomright w3-round rebtn" 
+											id="${data.bno}" style="padding: 0 10px; cursor: pointer;">답글달기</div>
+										</c:if>
+										<c:if test="${ SID eq data.id}">
+											<div class="w3-card-4 w3-button-small w3-red w3-hover-amber w3-right w3-display-bottomleft w3-round dbtn" 
+											id="d${data.bno}" style="padding: 0 10px; cursor: pointer;">글 삭제</div>
+											<div class="w3-card-4 w3-button-small w3-black w3-hover-amber w3-right w3-display-bottomright w3-round ebtn" 
+											id="e${data.bno}" style="padding: 0 10px; cursor: pointer;">글 수정</div>
+										</c:if>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</c:forEach>
+		</div>
+		
+		<!-- 페이징 버튼 -->
+		<div class="w3-col w3-margin-top">
+			<form method="POST" action="/cls/reBoard/reBoardList.cls" name="pfrm" id="pfrm" class="w3-bar w3-border w3-round">
+				<input type="hidden" id="nowPage" name="nowPage">
+				<!-- 이전 버튼 처리 -->
+			  	<c:if test="${PAGE.startPage != 1}">
+			  		<span class="w3-bar-item w3-button pagebtn" id="${PAGE.startPage - 1}">&laquo;</span>
+			  	</c:if>
+			  
+			  	<c:forEach var="page" begin="${PAGE.startPage}" end="${PAGE.endPage}">
+			  		<span class="w3-bar-item w3-button pagebtn" id="${page}">${page}</span>
+			  	</c:forEach>
+			  
+				<!-- 다음 버튼 처리 -->
+			  	<c:if test="${PAGE.endPage != PAGE.totalPage}">
+			  		<span class="w3-bar-item w3-button pagebtn" id="${PAGE.endPage + 1}">&raquo;</span>
+			  	</c:if>
+			</form>
+		</div>
+	</div>
 	</body>
 </html>

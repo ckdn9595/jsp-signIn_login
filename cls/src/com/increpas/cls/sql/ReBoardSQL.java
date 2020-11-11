@@ -4,7 +4,10 @@ public class ReBoardSQL {
 	public final int SEL_RBD_RNO = 1001;
 	public final int SEL_MEMBER_ID = 1002;
 	public final int SEL_RBD_CNT = 1003;
+	public final int SEL_ID_AVT = 1004;
 	
+	public final int EDIT_REBOARD = 2001;
+	public final int DEL_REBOARD = 2002;
 	public final int ADD_BOARD = 3001;
 	public final int ADD_REBOARD = 3002;
 	
@@ -43,6 +46,16 @@ public class ReBoardSQL {
 			buff.append("WHERE ");
 			buff.append("	isshow = 'Y' ");
 			break;
+		case SEL_ID_AVT:
+			buff.append("SELECT ");
+			buff.append("	afile avatar ");
+			buff.append("FROM ");
+			buff.append("	member, avatar ");
+			buff.append("WHERE ");
+			buff.append("	isshow = 'Y' ");
+			buff.append("	AND avt = ano ");
+			buff.append("	AND id = ? ");
+			break;
 		case SEL_RBD_CNT:
 			buff.append("SELECT ");
 			buff.append("	COUNT(*) cnt ");
@@ -51,6 +64,22 @@ public class ReBoardSQL {
 			buff.append("WHERE ");
 			buff.append("	isshow = 'Y' ");
 			break;
+		case DEL_REBOARD:
+			buff.append("UPDATE ");
+			buff.append("	reboard ");
+			buff.append("set ");
+			buff.append("	isshow = 'N' ");
+			buff.append("WHERE ");
+			buff.append("	bno = ? ");
+			break;
+		case EDIT_REBOARD:
+			buff.append("UPDATE ");
+			buff.append("	reboard ");
+			buff.append("set ");
+			buff.append("	body = ? ");
+			buff.append("WHERE ");
+			buff.append("	bno = ? ");
+			break;
 		case ADD_BOARD:
 			buff.append("INSERT INTO ");
 			buff.append("	reboard(bno, b_mno, body) ");
@@ -58,6 +87,15 @@ public class ReBoardSQL {
 			buff.append("	(SELECT NVL(MAX(bno) + 1, 10001) FROM reboard), ");
 			buff.append("	(SELECT mno FROM member WHERE id = ?), ");
 			buff.append("	? ");
+			buff.append(") ");
+			break;
+		case ADD_REBOARD:
+			buff.append("INSERT INTO ");
+			buff.append("	reboard(bno, b_mno, body, upno) ");
+			buff.append("VALUES( ");
+			buff.append("	(SELECT NVL(MAX(bno) + 1, 10001) FROM reboard), ");
+			buff.append("	(SELECT mno FROM member WHERE id = ?), ");
+			buff.append("	?,? ");
 			buff.append(") ");
 			break;
 		}

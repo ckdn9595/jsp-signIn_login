@@ -153,6 +153,10 @@
 	margin: 10px 0px;
 }
 
+.btn {
+	height: 20px;
+	line-height: 30%;
+}
 .btnBox {
 	height: 20px;
 	line-height: 30%;

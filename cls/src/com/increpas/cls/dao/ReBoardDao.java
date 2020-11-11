@@ -38,7 +38,8 @@ public class ReBoardDao {
 				rVO.setBno(rs.getInt("bno"));
 				rVO.setMno(rs.getInt("mno"));
 				rVO.setId(rs.getString("id"));
-				rVO.setBody(rs.getString("body"));
+				rVO.setAvatar(rs.getString("sname"));
+				rVO.setBody(rs.getString("body").replace("\r\n","<br>"));
 				rVO.setUpno(rs.getInt("upno"));
 				rVO.setStep(rs.getInt("step"));
 				rVO.setWdate(rs.getDate("wdate"));
@@ -55,6 +56,54 @@ public class ReBoardDao {
 		}
 		return list;
 	}
+	public int addContent(String id, String body) {
+		int cnt = 0 ; 
+		con = db.getCon();
+		String sql = rSQL.getSQL(rSQL.ADD_BOARD);
+		pstmt = db.getPSTMT(con, sql);
+		try {
+			pstmt.setString(1, id);
+			pstmt.setString(2, body);
+			cnt = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			db.close(pstmt);
+			db.close(con);
+		}
+		
+		return cnt;
+	}
+	
+	
+	public String getAvtFile(String id) {
+		String file = null;
+		// 할일
+		// 커넥션 얻어오고
+		con = db.getCon();
+		// 질의명령 가져오고
+		String sql = rSQL.getSQL(rSQL.SEL_ID_AVT);
+		// pstmt 가져오고
+		pstmt = db.getPSTMT(con, sql);
+		try {
+			// 질의명령 완성하고
+			pstmt.setString(1, id);
+			// 질의명령 보내고 결과받고
+			rs = pstmt.executeQuery();
+			// 결과꺼내고
+			while(rs.next()) {
+				file = rs.getString("avatar");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.close(rs);
+			db.close(pstmt);
+			db.close(con);
+		}
+		// 데이터 넘겨주고
+		return file;
+	}
 	// 댓글 원글 입력 전담 처리함수
 	public int addBoard(ReBoardVO rVO) {
 		int cnt = 0 ; 
@@ -65,6 +114,26 @@ public class ReBoardDao {
 			// 질의명령 완성하고
 			pstmt.setString(1, rVO.getId());
 			pstmt.setString(2, rVO.getBody());
+			// 질의명령 보내고 결과받고
+			cnt  = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.close(pstmt);
+			db.close(con);
+		}
+		return cnt;
+	}
+	public int addComment(String id , String body, int upno) {
+		int cnt = 0 ; 
+		con = db.getCon();
+		String sql = rSQL.getSQL(rSQL.ADD_REBOARD);
+		pstmt = db.getPSTMT(con, sql);
+		try {
+			// 질의명령 완성하고
+			pstmt.setString(1, id);
+			pstmt.setString(2, body);
+			pstmt.setInt(3, upno);
 			// 질의명령 보내고 결과받고
 			cnt  = pstmt.executeUpdate();
 		} catch(Exception e) {
@@ -100,6 +169,45 @@ public class ReBoardDao {
 			db.close(con);
 		}
 		return list;
+	}
+	
+	public int editReBoard(int bno, String body) {
+		int cnt = 0 ; 
+		con = db.getCon();
+		String sql = rSQL.getSQL(rSQL.EDIT_REBOARD);
+		pstmt = db.getPSTMT(con, sql);
+		try {
+			pstmt.setString(1, body);
+			pstmt.setInt(2, bno);
+			
+			cnt  = pstmt.executeUpdate()	;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			db.close(pstmt);
+			db.close(con);
+		}
+		return cnt;
+	}
+	
+	public int delReboard(int bno) {
+		int cnt = 0;
+		con = db.getCon();
+		String sql = rSQL.getSQL(rSQL.DEL_REBOARD);
+		pstmt = db.getPSTMT(con, sql);
+		try {
+			pstmt.setInt(1, bno);
+			
+			cnt = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			db.close(pstmt);
+			db.close(con);
+		}
+		
+		return cnt;
 	}
 	
 	// 게시글 수 조회 전담 처리함수

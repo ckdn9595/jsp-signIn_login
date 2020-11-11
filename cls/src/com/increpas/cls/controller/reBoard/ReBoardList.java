@@ -15,18 +15,23 @@ public class ReBoardList implements ClsMain {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) {
 		String view = "reBoard/ReBoard";
-		
+		ReBoardDao rDao = new ReBoardDao();
+		String sid = "";
+		String avatar = "noimage.jpg";
 		int nowPage = 1;
 		try {
+			sid = (String)req.getSession().getAttribute("SID");
+			avatar = rDao.getAvtFile(sid);
 			nowPage = Integer.parseInt(req.getParameter("nowPage"));
 		}catch(Exception e) {}
 		
-		ReBoardDao rDao = new ReBoardDao();
 		int total = rDao.getCnt();
 		PageUtil page = new PageUtil(nowPage, total);
 		
 		ArrayList<ReBoardVO> list = rDao.getBoardList(page);
+		String sname = "";
 		
+		req.setAttribute("AVTIMG", avatar);
 		req.setAttribute("LIST", list);
 		req.setAttribute("PAGE", page);
 		
