@@ -11,10 +11,10 @@ public class ReBoardEditProc implements ClsMain {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) {
 		String sid = "";
+		req.setAttribute("isRedirect", true);
 		try {
 			sid = (String)req.getSession()	.getAttribute("SID");
 		}catch(Exception e) {
-			req.setAttribute("isRedirect", true);
 			return "/cls/member/login.cls";
 		}
 		
@@ -27,7 +27,6 @@ public class ReBoardEditProc implements ClsMain {
 		ReBoardDao dao = new ReBoardDao();
 		int cnt = dao.editReBoard(bno, body);
 		String view = "/cls/reBoard/reBoardList.cls?nowPage="+nowPage;
-		req.setAttribute("isRedirect", true);
 		return view;
 	}
 

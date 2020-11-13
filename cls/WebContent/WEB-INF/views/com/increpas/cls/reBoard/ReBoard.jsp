@@ -31,7 +31,7 @@
 							<input type="hidden" name = "id" value="${SID}">
 							<input type="hidden" name = "bno" id="tno">
 							<input type="hidden" name = "avatar" id="avt" value="${AVTIMG}">
-							<input type="hidden" name="nowpage" value="${PAGE.nowPage}">
+							<input type="hidden" name="nowPage" value="${PAGE.nowPage}">
 							<textarea class="w3-input w3-border h72" style="resize: none;" placeholder="인삿말을 작성하세요!" id="body" name="body"></textarea>
 							<div class="w3-col pdh1 mt5">
 								<span class="w3-col m2 w3-left w3-button w3-small w3-orange w3-hover-deep-orange btn" id="rrbtn">reset</span>

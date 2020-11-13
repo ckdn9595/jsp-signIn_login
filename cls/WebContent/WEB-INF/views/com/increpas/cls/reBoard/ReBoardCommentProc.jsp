@@ -21,6 +21,9 @@
 		<input type="hidden" name="nowPage" value="${param.nowPage}">
 		<input type="hidden" name="avatar" value="${param.avatar}">				
 	</form>
+<%-- 	<c:redirect url="/reBoard/reBoardList.cls"> --%>
+<%-- 	 	<c:param name="nowPage" value="${param.nowPage}" /> --%>
+<%-- 	 </c:redirect> --%>
 	
 </body>
 </html>

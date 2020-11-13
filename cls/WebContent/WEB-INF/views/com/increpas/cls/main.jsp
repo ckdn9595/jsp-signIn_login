@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/cls/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/cls/css/cls.css">
 <script type="text/javascript" src="/cls/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script type="text/javascript" src="/cls/js/main.js"></script>
 <style>
 	h5 {
@@ -53,7 +54,7 @@
 						<h5 class="w3-col w3-button w3-left w3-green w3-hover-light-pink" id="gbtn">방명록</h5>
 					</div>
 					<div class="w3-col m3 pdh10">
-						<h5 class="w3-col w3-button w3-left w3-yellow w3-hover-light-pink" id="sbtn">설문조사사</h5>
+						<h5 class="w3-col w3-button w3-left w3-yellow w3-hover-light-pink" id="sbtn">설문 조사</h5>
 					</div>
 					<c:if test="${RCNT ==0}">
 						<div class="w3-col m3 pdh10">
@@ -68,6 +69,24 @@
 					</div>
 				</div>				
 		</div>
+		<div id="naverIdLogin"></div>
+<!-- 		<div id="naverIdLogin"></div> -->
 	</div>
+		<!-- //네이버아이디로로그인 버튼 노출 영역 -->
+		
+		<!-- 네이버아디디로로그인 초기화 Script -->
+		<script type="text/javascript">
+			var naverLogin = new naver.LoginWithNaverId(
+				{
+					clientId: "개발자센터에 등록한 ClientID",
+					callbackUrl: "개발자센터에 등록한 callback Url",
+					isPopup: false, /* 팝업을 통한 연동처리 여부 */
+					loginButton: {color: "green", type: 5, height: 100} /* 로그인 버튼의 타입을 지정 */
+				}
+			);
+			
+			/* 설정정보를 초기화하고 연동을 준비 */
+			naverLogin.init();
+		</script>
 </body>
 </html>

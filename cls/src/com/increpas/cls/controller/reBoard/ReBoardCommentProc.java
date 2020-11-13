@@ -22,6 +22,7 @@ public class ReBoardCommentProc implements ClsMain {
 		String body = req.getParameter("body");
 		String id = (String)req.getSession().getAttribute("SID");
 		ReBoardDao rd = new ReBoardDao();
+//		String nowPage = req.getParameter("nowPage");
 		
 		int cnt = rd.addComment(id, body, upno);
 		if(cnt != 1) {
@@ -30,6 +31,7 @@ public class ReBoardCommentProc implements ClsMain {
 		
 		System.out.println("여긴 확실히 다돌았어");
 		return view;
+		
 	}
 
 }

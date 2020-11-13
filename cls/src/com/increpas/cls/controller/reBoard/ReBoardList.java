@@ -30,7 +30,7 @@ public class ReBoardList implements ClsMain {
 		
 		ArrayList<ReBoardVO> list = rDao.getBoardList(page);
 		String sname = "";
-		
+		System.out.println("#######"+nowPage);
 		req.setAttribute("AVTIMG", avatar);
 		req.setAttribute("LIST", list);
 		req.setAttribute("PAGE", page);

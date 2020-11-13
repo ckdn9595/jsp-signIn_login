@@ -21,5 +21,7 @@ $(document).ready(function(){
 	$('#rbtn').click(function(){
 		$(location).attr('href','/cls/reBoard/reBoardList.cls');	
 	});
-	
+	$('#sbtn').click(function(){
+		$(location).attr('href','/cls/survey/surveyInfo.cls');
+	});
 });

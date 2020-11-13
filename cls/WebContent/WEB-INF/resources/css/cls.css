@@ -40,6 +40,9 @@
 	margin-bottom: 10px;
 }
 
+.txt12 {
+	font-size: 12pt;
+}
 .txt14 {
 	font-size: 14pt;
 }
@@ -76,6 +79,12 @@
 
 .pdl10 {
 	padding-left: 10px;
+}
+.pdl30 {
+	padding-left: 30px;
+}
+.pdl50 {
+	padding-left: 50px;
 }
 
 .pd10 {
