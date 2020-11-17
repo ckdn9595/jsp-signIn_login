@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,20 +76,17 @@
 <!-- 		<div id="naverIdLogin"></div> -->
 	</div>
 		<!-- //네이버아이디로로그인 버튼 노출 영역 -->
-		
-		<!-- 네이버아디디로로그인 초기화 Script -->
-		<script type="text/javascript">
-			var naverLogin = new naver.LoginWithNaverId(
-				{
-					clientId: "개발자센터에 등록한 ClientID",
-					callbackUrl: "개발자센터에 등록한 callback Url",
-					isPopup: false, /* 팝업을 통한 연동처리 여부 */
-					loginButton: {color: "green", type: 5, height: 100} /* 로그인 버튼의 타입을 지정 */
-				}
-			);
-			
-			/* 설정정보를 초기화하고 연동을 준비 */
-			naverLogin.init();
-		</script>
+		<%
+		    String clientId = "2zF0slKFPpw3BrSwHK9t";//애플리케이션 클라이언트 아이디값";
+		    String redirectURI = URLEncoder.encode("cls/main.cls", "UTF-8");
+		    SecureRandom random = new SecureRandom();
+		    String state = new BigInteger(130, random).toString();
+		    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+		    apiURL += "&client_id=" + clientId;
+		    apiURL += "&redirect_uri=" + redirectURI;
+		    apiURL += "&state=" + state;
+		    session.setAttribute("state", state);
+		 %>
+		 <a href="${API}"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
 </body>
 </html>

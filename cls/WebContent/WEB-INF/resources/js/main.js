@@ -24,4 +24,7 @@ $(document).ready(function(){
 	$('#sbtn').click(function(){
 		$(location).attr('href','/cls/survey/surveyInfo.cls');
 	});
+	$('#fbtn').click(function(){
+		$(location).attr('href','/cls/board/BoardList.cls');
+	});
 });
