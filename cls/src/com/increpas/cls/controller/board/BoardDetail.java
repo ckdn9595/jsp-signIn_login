@@ -12,7 +12,7 @@ public class BoardDetail implements ClsMain {
 		String view = "board/BoardDetail";
 		req.setAttribute("isRedirect", false);
 		
-		String sid = req.getParameter("bno")
+		String sid = req.getParameter("bno");
 		System.out.println(1);
 		return view;
 	}
