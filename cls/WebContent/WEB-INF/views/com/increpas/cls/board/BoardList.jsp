@@ -57,7 +57,12 @@
 				<div class="w3-col w3-center w3-hover-lime w3-border-bottom brow" id="${data.bno}">
 					<div class="w3-col m2 w3-border-right">${data.bno}</div>
 					<div class="w3-col m2 w3-border-right">${data.id}</div>
-					<div class="w3-col m4 w3-border-right">${data.title}</div>
+					<div class="w3-col m4 w3-border-right">
+						<c:if test="${data.cnt != 0}">
+							<span class="w3-text-blue">[첨부파일]</span>
+						</c:if>
+							${data.title}
+					</div>
 					<div class="w3-col m3 w3-border-right">${data.sdate}</div>
 					<div class="w3-col m1">${data.click}</div>
 				</div>

@@ -29,7 +29,6 @@ public class BoardWriteProc implements ClsMain {
 		  지금은 파라미터방식이 아닌 스트림 방식으로 데이터가 전달 되기 때문엥
 		 */
 		String sid = SessionUtil.procSession(req, resp);
-		System.out.println("String sid = SessionUtil.procSession(req, resp)" + sid);
 		String path = req.getSession().getServletContext().getRealPath("\\WEB-INF\\resources\\img\\upload");
 		
 		
@@ -72,11 +71,21 @@ public class BoardWriteProc implements ClsMain {
 		Enumeration en = multi.getFileNames();
 		
 		while (en.hasMoreElements()) {
+			
 			String name = (String) en.nextElement();
-			String oriname  = multi.getOriginalFileName(name);
-			String savename = multi.getFilesystemName(name);
-			File file = multi.getFile(name);
-			long len = file.length();
+			String oriname = "";
+			String savename= "";
+			File file = null;
+			long len = 0;
+			try {
+				oriname  = multi.getOriginalFileName(name);
+				savename = multi.getFilesystemName(name);
+				file = multi.getFile(name);
+				len = file.length();
+			}catch(Exception e) {
+				System.out.println("널인거 추가여"+name);
+				continue;
+			}
 			
 			FileVO fVO = new FileVO();
 			fVO.setLen(len);

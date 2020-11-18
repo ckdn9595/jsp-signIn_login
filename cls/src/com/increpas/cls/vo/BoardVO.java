@@ -7,7 +7,7 @@ import java.text.*;
 import com.increpas.cls.vo.*;
 
 public class BoardVO {
-	private int bno, mno, ano, click;
+	private int bno, mno, ano, click, cnt;
 	private String title, body, id, avatar, sdate;
 	private Date wdate;
 	private Time wtime;
@@ -36,6 +36,12 @@ public class BoardVO {
 	}
 	public void setClick(int click) {
 		this.click = click;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	public String getTitle() {
 		return title;

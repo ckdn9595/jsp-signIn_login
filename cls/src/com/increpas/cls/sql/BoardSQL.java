@@ -13,7 +13,7 @@ public class BoardSQL {
 		
 		switch(code) {
 		case SEL_BOARD_LIST:
-			buff.append("SELECT * ");
+			buff.append("SELECT rno, bno, id, dat,TITLE, bclick, NVL(cnt,0)cnt ");
 			buff.append("FROM   (SELECT ");
 			buff.append("        rownum rno, b.* ");
 			buff.append("  		  FROM ");
@@ -24,9 +24,14 @@ public class BoardSQL {
 			buff.append("                            FROM MEMBER  ");
 			buff.append("                                           ) M  ");
 			buff.append("        WHERE BISSHOW = 'Y' AND D.BMNO = M.MNO  ");
-			buff.append("        ORDER BY BDATE )b) ");
+			buff.append("        ORDER BY BDATE )b), ");
+			buff.append("		 (SELECT fbno, count(*) cnt from fileinfo ");
+			buff.append("		 Group BY fbno)");
 			buff.append("where ");
-			buff.append("    rno BETWEEN ? AND ? ");
+			buff.append("    bno = fbno(+) ");
+			buff.append("    and rno BETWEEN ? AND ? ");
+			buff.append("order by ");
+			buff.append("   rno ");
 			break;
 		case SEL_BD_TCNT:
 			buff.append("SELECT ");

@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/cls/css/cls.css">
 <script type="text/javascript" src="/cls/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="/cls/js/board/boardList.js"></script>
+
 </head>
 <body>
 	<div class="w3-content mw750">
@@ -18,7 +19,7 @@
 			method="POST" action="/cls/board/boardWriteProc.cls" id="wfrm" name="wfrm" encType="multipart/form-data">
 			<div class="w3-col w3-margin-top">
 				<label class="w3-col m2 w3-right-align w3-label">작성자</label>
-				<div class="w3-col m9 pdl20 w3-label">${SID}</div>
+				<div class="w3-col m9 pdl20 w3-label" id="id">${SID}</div>
 			</div>
 			<div class="w3-col w3-margin-top">
 				<label class="w3-col m2 w3-right-align w3-label">Title</label>
@@ -30,8 +31,12 @@
 			<div class="w3-col w3-margin-top filefrr">
 					<label class="w3-col m2 w3-right-align w3-label">File</label>   
 					<div class="w3-col m9 pdl20 divht">
-						<input type="file" name="file1" id="file"
-								class="w3-col w3-input w3-border pdl10 upfile" placeholder="파일을 선택하세요!" multiple>
+						<input type="file" name="file0" id="file0"
+								class="w3-col w3-input w3-border pdl10 upfile" placeholder="파일을 선택하세요!">
+						<c:forEach var="i" begin="0" end="3" varStatus="st">
+							<input type="file" name="file${st.count}" id="file${st.count}"
+								class="w3-col w3-input w3-border pdl10 upfile w3-hide" placeholder="파일을 선택하세요!">
+						</c:forEach>
 					</div>
 			</div>
 			<div class="w3-col w3-margin-top">

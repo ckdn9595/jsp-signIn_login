@@ -32,11 +32,12 @@ public class BoardDAO {
 			while(rs.next()) {
 				BoardVO vo = new BoardVO();
 				
-				vo.setBno(rs.getInt("BNO"));
-				vo.setId(rs.getString("ID"));
+				vo.setBno(rs.getInt("bno"));
+				vo.setId(rs.getString("id"));
 				vo.setTitle(rs.getString("TITLE"));
-				vo.setSdate(rs.getString("DAT"));
-				vo.setClick(rs.getInt("BCLICK"));
+				vo.setSdate(rs.getString("dat"));
+				vo.setClick(rs.getInt("bclick"));
+				vo.setCnt(rs.getInt("cnt"));
 				list.add(vo);
 			}
 		}catch(Exception e) {

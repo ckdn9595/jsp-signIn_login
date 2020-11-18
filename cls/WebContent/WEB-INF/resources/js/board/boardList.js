@@ -1,8 +1,19 @@
-
+//var tmp = $('.divht').html();
+//var tmpcnt = 1;
+//function appendhtml(){
+////		$(this).removeAttr('oninput')
+////		$(this).attr('name','file'+ tmpcnt);
+//		$('.divht').append(tmp);
+//		tmpcnt += 1;
+//}
 $(document).ready(function(){
 	$('.brow').click(function(){
 		var sno = $(this).attr('id');
-		alert(sno);
+		$('#bno').val(sno);
+		// 전송주소 설정하고
+		$('#bfrm').attr('action', '/cls/board/BoardDetail.cls');
+		// 폼태그 전송하고
+		$('#bfrm').submit();
 	});
 	
 	$('.pagebtn').click(function(){
@@ -53,15 +64,20 @@ $(document).ready(function(){
 	$('#wbtn').click(function(){
 		var shead = $('#title').val();
 		var sbody = $('#body').val();
-		if((!shead) || (!sbody)){
+		var sid = $('#id').val();
+		if((!shead) || (!sbody) || (!sid)){
+			alert("로그인, 제목, 내용중 무언가가 없단다 아이야")
 			return;
 		};
 		$('#wfrm').submit();
 	});
-	var tmp = $('.divht').html();
 	$('.upfile').change(function(){
-		$(this).removeClass('upfile');
-		$('.divht').append(tmp);
-	});
+		var str = $(this).attr('id');
+		var lach = str.substr(str.length-1, 1);
+		lach = Number(lach);
+		num = lach + 1;
+		$('#file'+num).removeClass('w3-hide');
+	})
+	
 	
 });
